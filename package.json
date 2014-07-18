@@ -1,0 +1,27 @@
+{
+  "name": "frax",
+  "version": "0.0.1",
+  "description": "Frame extractor from data stream.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/enobufs/frax.git"
+  },
+  "devDependencies": {
+    "mocha": "~1.20.1"
+  },
+  "keywords": [
+    "Framing",
+    "TCP",
+    "Multiplex"
+  ],
+  "author": "enobufs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enobufs/frax/issues"
+  },
+  "homepage": "https://github.com/enobufs/frax"
+}
