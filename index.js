@@ -11,6 +11,13 @@ function Frax(fhLen) {
         default:
             this._fhLen = 2;
     }
+
+    // Define getter 'headerSize'
+    this.__defineGetter__("headerSize", function() {
+        return this._fhLen;
+    });
+
+    // Reset internal state.
     this.reset();
 }
 
@@ -36,6 +43,7 @@ Frax.prototype.input = function input(buf) {
     this._extract();
 };
 
+/** @deprecated */
 Frax.prototype.frameHeaderSize = function frameHeaderSize() {
     return this._fhLen;
 };

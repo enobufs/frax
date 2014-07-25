@@ -6,21 +6,30 @@ Frame extractor from data stream (e.g. TCP).
     $ npm install frax
 
 ## Features
-* Extract frames delimited by frame header (frame length)
-* Supports various frame length (1, 2, 4 bytes)
-* Frame length 2 is equivalent to RFC 4571.
+* Extracts frames delimited by frame header (frame length)
+* Supports various frame header lengths (1, 2, 4 bytes)
+* Frame header length 2 is equivalent to RFC 4571.
+
+```text
++--+-------------+--+-------------+--+-------------+
+|FH|   Frame 1   |FH|   Frame 2   |FH|   Frame 3   | ...
++--+-------------+--+-------------+--+-------------+
+FH: Frame header contains frame length in bytes (big-endian)
+    The length does not include the frame header itself.
+Frame: Application data.
+```
 
 ## API
 
-### Class method
+### Module method
 * create([headerLen])
-Creates an instance of frax. The headerLen would should either be 1, 2 or 4. Default is 2.
+Creates an instance of frax. The `headerLen` should either be 1, 2 or 4, or defaults to 2 otherwise.
 
 ### Instance method
 * frax.input(buf) -
-Input stream data. The buf is of type Buffer.
-* frax.frameHeaderSize() -
-Returns frame header size use by the instance.
+Input stream data. The `buf` is of type Buffer.
+* frax.headerSize (getter) -
+Returns frame header size used by the instance.
 * frax.reset() -
 Reset the internal state. Probably useless expect for test purposes.
 * Event: 'data' -
@@ -36,7 +45,7 @@ frax.on('data', function (frame) {
     console.log('%d bytes of frame received', frame.length);
 });
 
-// Pass incoming data into framx directly.
+// Pass incoming data into frax directly.
 soc.on('data', function (buf) {
     frax.input(buf);
 });
